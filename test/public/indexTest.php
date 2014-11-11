@@ -1,11 +1,21 @@
 <?php
 
-class indexTest extends PHPUnit_Framework_TestCase {
-	
+class indexTest extends PHPUnit_Extensions_Selenium2TestCase
+{
+
+    protected function setUp()
+    {
+        
+        $this->setHost('localhost');
+        $this->setPort(4444);
+        $this->setBrowser('phantomjs');
+        $this->setBrowserUrl('http://vitafolio.local/');
+    }
+    
 	public function testHelloWorld()
 	{
-		$this->expectOutputString('Hello World!');
-		require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..'  . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'index.php';
+        $this->url('/');
+		$this->assertEquals('<html><head></head><body>Hello World!</body></html>', $this->source());
 	}
 	
 }
