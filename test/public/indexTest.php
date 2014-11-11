@@ -15,7 +15,7 @@ class indexTest extends PHPUnit_Extensions_Selenium2TestCase
 	public function testHelloWorld()
 	{
         $this->url('/');
-		$this->assertEquals('<html><head></head><body>Hello World!</body></html>', $this->source());
+		$this->assertEquals('Hello World!', $this->byTag('body')->text());
 	}
 	
 }
