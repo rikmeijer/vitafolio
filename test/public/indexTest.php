@@ -2,14 +2,9 @@
 
 class indexTest extends PHPUnit_Extensions_Selenium2TestCase
 {
-
     protected function setUp()
     {
-        
-        $this->setHost('localhost');
-        $this->setPort(4444);
-        $this->setBrowser('phantomjs');
-        $this->setBrowserUrl('http://vitafolio.local/');
+        $this->setBrowserUrl(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_BASEURL);
     }
     
 	public function testHelloWorld()
