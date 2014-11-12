@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 phpunit_config_file=/vitafolio/test/phpunit.xml
-preload_script=/vitafolio/test/bootstrap.php
+preload_script=/vitafolio/makegood.php
 test_file_pattern=
 test_folders=/vitafolio/test
 testing_framework=PHPUnit
