@@ -9,10 +9,10 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<html></html>', $element->build());
     }
     
-    public function testBuildWithAttributes()
+    public function testBuildWithAttributeString()
     {
         $element = new Element('html');
-        $element->setAttribute('lang', 'nl-NL');
+        $element->setAttributeString('lang', 'nl-NL');
         $this->assertEquals('<html lang="nl-NL"></html>', $element->build());
     }
     

@@ -20,7 +20,7 @@ class Element
         $this->name = $name;
     }
     
-    public function setAttribute($identifier, $value)
+    public function setAttributeString($identifier, $value)
     {
         $this->attributes[$identifier] = $identifier  . '="' . $value . '"';
     }
