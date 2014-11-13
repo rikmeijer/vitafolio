@@ -25,6 +25,11 @@ class Element
         $this->attributes[$identifier] = $identifier  . '="' . $value . '"';
     }
     
+    public function setAttributeArray($identifier, array $value)
+    {
+        $this->attributes[$identifier] = $identifier  . '="' . join(' ', $value) . '"';
+    }
+    
     public function build()
     {
         return '<' . $this->name . (count($this->attributes) > 0 ? ' ' . join(' ', $this->attributes) : '') . '></' . $this->name . '>';

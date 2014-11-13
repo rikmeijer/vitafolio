@@ -15,5 +15,11 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $element->setAttributeString('lang', 'nl-NL');
         $this->assertEquals('<html lang="nl-NL"></html>', $element->build());
     }
-    
+
+    public function testBuildWithAttributeArray()
+    {
+        $element = new Element('html');
+        $element->setAttributeArray('class', array('list', 'bullets'));
+        $this->assertEquals('<html class="list bullets"></html>', $element->build());
+    }
 }
