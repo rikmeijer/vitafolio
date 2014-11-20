@@ -1,7 +1,7 @@
 <?php
-namespace HTML5;
+namespace HTML5\Node;
 
-class Element extends Node implements BuildableInterface
+class Element extends \HTML5\Node implements \HTML5\BuildableInterface
 {
     /**
      * 
@@ -63,9 +63,9 @@ class Element extends Node implements BuildableInterface
     
     /**
      * 
-     * @param BuildableInterface $child
+     * @param \HTML5\BuildableInterface $child
      */
-    public function addChild(BuildableInterface $child)
+    public function addChild(\HTML5\BuildableInterface $child)
     {
         $this->children[] = $child;
         $child->adopt($this);

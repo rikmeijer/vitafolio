@@ -1,7 +1,7 @@
 <?php
-namespace HTML5;
+namespace HTML5\Node;
 
-class Text extends Node implements BuildableInterface
+class Text extends \HTML5\Node implements \HTML5\BuildableInterface
 {
     /**
      * 
