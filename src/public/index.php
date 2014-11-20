@@ -1,7 +1,7 @@
 <?php 
 $bootstrap = require dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'bootstrap.php';
-$bootstrap();
+$services = $bootstrap();
 
-$document = HTML5\Document::withChildren(array(new HTML5\Node\Text('Hello World!')));
+$document = $services['library']['HTML5']($services)->createDocumentwithChildren(array(new HTML5\Node\Text('Hello World!')));
 
 print $document->build();

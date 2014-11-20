@@ -4,9 +4,9 @@ return function ()
     define('NAMESPACE_SEPARATOR', '\\');
     
     $libraryAutoload = require __DIR__ . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'autoload.php';
-    $libraryAutoload(function ($prefix, $base_dir)
+    $libraryFactories = $libraryAutoload(function ($prefix, $base_dir)
     {
-        return spl_autoload_register(function ($class) use($prefix, $base_dir)
+        spl_autoload_register(function ($class) use($prefix, $base_dir)
         {
             // does the class use the namespace prefix?
             $len = strlen($prefix);
@@ -28,7 +28,16 @@ return function ()
                 require_once $file;
             }
         });
+        
+        return function(array $services) use ($prefix, $base_dir) {
+            $factoryClassname = $prefix . NAMESPACE_SEPARATOR . 'Factory';
+            return new $factoryClassname($services);
+        };
     });
     
     require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+    
+    return array(
+        'library' => $libraryFactories
+    );
 };
