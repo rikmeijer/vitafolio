@@ -5,16 +5,15 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
 {
     public function testBuild()
     {
-        $document = new Document(new Node\Text('Hello World'));
-        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body>Hello World</body></html>', $document->build());
+        $document = new Document();
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body></html>', $document->build());
     }
 
     public function testAddChild()
     {
-        $element = new Document();
-        $element->addChild($head = new Node\Element('div'));
-        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body><div></body></html>', $element->build());
-        // $this->assertTrue($head->hasParent($element));
+        $document = new Document();
+        $document->addChild(new Node\Element('div'));
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body><div></body></html>', $document->build());
     }
     
     

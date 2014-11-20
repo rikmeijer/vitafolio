@@ -22,7 +22,7 @@ class Document implements BuildableInterface, ContainableInterface
     public function __construct()
     {
         $this->head = new Node\Element('head');
-        $this->body = Node\Element::withChildren('body', func_get_args());
+        $this->body = new Node\Element('body');
     }
     
      /* (non-PHPdoc)
