@@ -25,8 +25,10 @@ class Document implements BuildableInterface, ContainableInterface
         $this->body = new Node\Element('body');
     }
     
-     /* (non-PHPdoc)
-      * @see \HTML5\ContainableInterface::withChildren()
+     /**
+      * 
+      * @param array $children
+      * @return \HTML5\Document
       */
      static function withChildren(array $children)
      {
