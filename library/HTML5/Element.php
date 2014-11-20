@@ -17,7 +17,7 @@ class Element implements BuildableInterface
     
     /**
      * 
-     * @var Element[]
+     * @var BuildableInterface[]
      */
     private $children = array();
     
@@ -59,7 +59,11 @@ class Element implements BuildableInterface
         $this->attributes[$identifier] = $identifier  . '="' . join(' ', $value) . '"';
     }
     
-    public function addChild(Element $child)
+    /**
+     * 
+     * @param BuildableInterface $child
+     */
+    public function addChild(BuildableInterface $child)
     {
         $this->children[] = $child;
     }

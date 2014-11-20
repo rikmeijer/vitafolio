@@ -30,6 +30,14 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<html><head></html>', $element->build());
     }
     
+
+    public function testAddTextChild()
+    {
+        $element = new Element('html');
+        $element->addChild(new Text('head'));
+        $this->assertEquals('<html>head</html>', $element->build());
+    }
+    
     public function testConstructWithChildren()
     {
         $element = Element::withChildren('html', array(
