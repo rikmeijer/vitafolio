@@ -28,6 +28,19 @@ class Element
     
     /**
      * 
+     * @param string $name
+     * @param Element[] $children
+     * @return \HTML5\Element
+     */
+    static function withChildren($name, array $children)
+    {
+        $element = new self($name);
+        $element->children = $children;
+        return $element;
+    }
+    
+    /**
+     * 
      * @param string $identifier
      * @param string $value
      */
