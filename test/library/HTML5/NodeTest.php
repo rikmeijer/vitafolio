@@ -8,10 +8,9 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         $parent = new Node();
         $child = new Node();
         
-        $parent->adopt($child);
+        $child->adopt($parent);
         
         $this->assertTrue($child->hasParent($parent));
-        $this->assertTrue($parent->hasChild($child));
     }
     
     

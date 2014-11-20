@@ -7,22 +7,15 @@ class Node
      * 
      * @var Node
      */
-    private $parent;
-
-    /**
-     *
-     * @var Node[]
-     */
-    private $children;
+    protected $parent;
     
     /**
      * 
-     * @param Node $child
+     * @param Node $parent
      */
-    public function adopt(Node $child)
+    public function adopt(Node $parent)
     {
-        $child->parent = $this;
-        $this->children[] = $child;
+        $this->parent = $parent;
     }
     
     /**
@@ -32,15 +25,5 @@ class Node
     public function hasParent(Node $parent)
     {
         return $this->parent === $parent;
-    }
-    
-    /**
-     * 
-     * @param Node $child
-     * @return boolean
-     */
-    public function hasChild(Node $child)
-    {
-        return in_array($child, $this->children);
     }
 }
