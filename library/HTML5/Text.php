@@ -20,6 +20,6 @@ class Text
      */
     public function build()
     {
-        return $this->text;
+        return htmlentities($this->text, ENT_COMPAT, 'UTF-8');
     }
 }
