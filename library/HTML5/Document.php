@@ -19,25 +19,11 @@ class Document implements BuildableInterface, ContainableInterface
      * 
      * @param Node\Element $child, ...
      */
-    public function __construct()
+    public function __construct(Factory $factory)
     {
-        $this->head = new Node\Element('head');
-        $this->body = new Node\Element('body');
+        $this->head = $factory->createElement('head');
+        $this->body = $factory->createElement('body');
     }
-    
-     /**
-      * 
-      * @param array $children
-      * @return \HTML5\Document
-      */
-     static function withChildren(array $children)
-     {
-        $element = new self();
-        foreach ($children as $child) {
-            $element->addChild($child);
-        }
-        return $element;
-     }
     
     /**
      * 

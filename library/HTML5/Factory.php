@@ -14,7 +14,7 @@ class Factory
      */
     public function createDocument()
     {
-        return new Document();
+        return new Document($this);
     }
     
     /**
@@ -23,7 +23,20 @@ class Factory
      */
     public function createDocumentWithChildren(array $children)
     {
-        return Document::withChildren($children);
+        $element = $this->createDocument();
+        foreach ($children as $child) {
+            $element->addChild($child);
+        }
+        return $element;
     }
-    
+
+
+    /**
+     *
+     * @return \HTML5\Node\Element
+     */
+    public function createElement($name)
+    {
+        return new Node\Element($name);
+    }
 }
