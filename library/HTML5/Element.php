@@ -46,6 +46,6 @@ class Element
      */
     public function build()
     {
-        return '<' . $this->name . (count($this->attributes) > 0 ? ' ' . join(' ', $this->attributes) : '') . '></' . $this->name . '>';
+        return '<' . $this->name . (count($this->attributes) > 0 ? ' ' . join(' ', $this->attributes) : '') . '>';
     }
 }
