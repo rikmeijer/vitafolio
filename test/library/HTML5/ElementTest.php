@@ -1,5 +1,5 @@
 <?php
-namespace HTML;
+namespace HTML5;
 
 class ElementTest extends \PHPUnit_Framework_TestCase
 {
