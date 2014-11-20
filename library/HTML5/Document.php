@@ -28,10 +28,8 @@ class Document implements BuildableInterface, ContainableInterface
     public function __construct(Factory $factory)
     {
         $this->root = $factory->createElement('html');
-        $this->head = $factory->createElement('head');
-        $this->root->addChild($this->head);
-        $this->body = $factory->createElement('body');
-        $this->root->addChild($this->body);
+        $this->head = $this->root->addChild($factory->createElement('head'));
+        $this->body = $this->root->addChild($factory->createElement('body'));
     }
     
     /**
