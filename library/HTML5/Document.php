@@ -7,7 +7,13 @@ class Document implements BuildableInterface
      * 
      * @var Element
      */
-    private $root;
+    private $head;
+
+    /**
+     *
+     * @var Element
+     */
+    private $body;
     
     /**
      * 
@@ -15,10 +21,8 @@ class Document implements BuildableInterface
      */
     public function __construct(BuildableInterface $child)
     {
-        $this->root = Node\Element::withChildren('html', array(
-            new Node\Element('head'),
-            Node\Element::withChildren('body', func_get_args())
-        ));
+        $this->head = new Node\Element('head');
+        $this->body = Node\Element::withChildren('body', func_get_args());
     }
     
     /**
@@ -27,6 +31,9 @@ class Document implements BuildableInterface
      */
     public function build()
     {
-        return '<!DOCTYPE html>' . PHP_EOL . $this->root->build();
+        return '<!DOCTYPE html>' . PHP_EOL . Node\Element::withChildren('html', array(
+            $this->head,
+            $this->body
+        ))->build();
     }
 }
