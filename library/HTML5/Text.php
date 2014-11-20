@@ -1,7 +1,7 @@
 <?php
 namespace HTML5;
 
-class Text
+class Text implements BuildableInterface
 {
     /**
      * 

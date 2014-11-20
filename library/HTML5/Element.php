@@ -1,7 +1,7 @@
 <?php
 namespace HTML5;
 
-class Element
+class Element implements BuildableInterface
 {
     /**
      * 
