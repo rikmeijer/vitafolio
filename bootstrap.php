@@ -28,20 +28,11 @@ return function ()
                 require_once $file;
             }
         });
-        
-        return function(array $services) use ($prefix, $base_dir) {
-            $factoryClassname = $prefix . NAMESPACE_SEPARATOR . 'Factory';
-            return new $factoryClassname($services);
-        };
     });
     
     require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
     
-    return $services = array(
-        'library' => array_map(function($libraryFactory) use (&$services) {
-            return function() use ($libraryFactory, &$services) {
-                return $libraryFactory($services);
-            };
-        }, $libraryFactories)
+    return array(
+        'library' => $libraryFactories
     );
 };
