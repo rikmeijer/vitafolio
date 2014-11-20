@@ -35,7 +35,9 @@ class Element extends Node implements BuildableInterface
     static function withChildren($name, array $children)
     {
         $element = new self($name);
-        $element->children = $children;
+        foreach ($children as $child) {
+            $element->addChild($child);
+        }
         return $element;
     }
     
