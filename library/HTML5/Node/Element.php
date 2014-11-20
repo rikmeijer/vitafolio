@@ -64,11 +64,13 @@ class Element extends \HTML5\Node implements \HTML5\BuildableInterface, \HTML5\C
     /**
      * 
      * @param \HTML5\BuildableInterface $child
+     * return \HTML5\BuildableInterface
      */
     public function addChild(\HTML5\BuildableInterface $child)
     {
         $this->children[] = $child;
         $child->adopt($this);
+        return $child;
     }
     
     /**
