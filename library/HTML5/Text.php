@@ -1,7 +1,7 @@
 <?php
 namespace HTML5;
 
-class Text implements BuildableInterface
+class Text extends Node implements BuildableInterface
 {
     /**
      * 

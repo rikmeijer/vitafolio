@@ -26,8 +26,9 @@ class ElementTest extends \PHPUnit_Framework_TestCase
     public function testAddChild()
     {
         $element = new Element('html');
-        $element->addChild(new Element('head'));
+        $element->addChild($head = new Element('head'));
         $this->assertEquals('<html><head></html>', $element->build());
+        $this->assertTrue($head->hasParent($element));
     }
     
 
