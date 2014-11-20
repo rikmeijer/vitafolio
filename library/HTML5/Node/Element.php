@@ -28,21 +28,6 @@ class Element extends \HTML5\Node implements \HTML5\BuildableInterface, \HTML5\C
     
     /**
      * 
-     * @param string $name
-     * @param Element[] $children
-     * @return \HTML5\Element
-     */
-    static function withChildren($name, array $children)
-    {
-        $element = new self($name);
-        foreach ($children as $child) {
-            $element->addChild($child);
-        }
-        return $element;
-    }
-    
-    /**
-     * 
      * @param string $identifier
      * @param string $value
      */
