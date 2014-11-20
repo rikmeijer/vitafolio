@@ -16,4 +16,14 @@ class Factory
     {
         return new Document();
     }
+    
+    /**
+     * 
+     * @return \HTML5\Document
+     */
+    public function createDocumentWithChildren(array $children)
+    {
+        return Document::withChildren($children);
+    }
+    
 }
