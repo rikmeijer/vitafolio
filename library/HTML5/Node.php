@@ -26,12 +26,12 @@ class Node
     }
     
     /**
-     * 
+     * @param Node $parent
      * @return \HTML5\Node
      */
-    public function getParent()
+    public function hasParent(Node $parent)
     {
-        return $this->parent;
+        return $this->parent === $parent;
     }
     
     /**

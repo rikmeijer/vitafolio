@@ -10,7 +10,7 @@ class NodeTest extends \PHPUnit_Framework_TestCase
         
         $parent->adopt($child);
         
-        $this->assertEquals($parent, $child->getParent());
+        $this->assertTrue($child->hasParent($parent));
         $this->assertTrue($parent->hasChild($child));
     }
     
