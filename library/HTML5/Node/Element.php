@@ -1,7 +1,7 @@
 <?php
 namespace HTML5\Node;
 
-class Element extends \HTML5\Node implements \HTML5\BuildableInterface
+class Element extends \HTML5\Node implements \HTML5\BuildableInterface, \HTML5\ContainableInterface
 {
     /**
      * 

@@ -5,24 +5,24 @@ class Node
 {
     /**
      * 
-     * @var Node
+     * @var ContainableInterface
      */
     protected $parent;
     
     /**
      * 
-     * @param Node $parent
+     * @param ContainableInterface $parent
      */
-    public function adopt(Node $parent)
+    public function adopt(ContainableInterface $parent)
     {
         $this->parent = $parent;
     }
     
     /**
-     * @param Node $parent
+     * @param ContainableInterface $parent
      * @return \HTML5\Node
      */
-    public function hasParent(Node $parent)
+    public function hasParent(ContainableInterface $parent)
     {
         return $this->parent === $parent;
     }
