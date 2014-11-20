@@ -37,7 +37,11 @@ return function ()
     
     require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
     
-    return array(
-        'library' => $libraryFactories
+    return $services = array(
+        'library' => array_map(function($libraryFactory) use (&$services) {
+            return function() use ($libraryFactory, &$services) {
+                return $libraryFactory($services);
+            };
+        }, $libraryFactories)
     );
 };
