@@ -5,9 +5,8 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
 {
     public function testBuild()
     {
-        $document = new Document();
-        $this->assertEquals('<!DOCTYPE html>', $document->build());
+        $document = new Document(new Node\Element('html'));
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html>', $document->build());
     }
-    
     
 }
