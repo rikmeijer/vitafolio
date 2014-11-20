@@ -15,6 +15,12 @@ class Element
      */
     private $attributes = array();
     
+    /**
+     * 
+     * @var Element[]
+     */
+    private $children = array();
+    
     public function __construct($name)
     {
         $this->name = $name;
@@ -40,12 +46,24 @@ class Element
         $this->attributes[$identifier] = $identifier  . '="' . join(' ', $value) . '"';
     }
     
+    public function addChild(Element $child)
+    {
+        $this->children[] = $child;
+    }
+    
     /**
      * 
      * @return string
      */
     public function build()
     {
-        return '<' . $this->name . (count($this->attributes) > 0 ? ' ' . join(' ', $this->attributes) : '') . '>';
+        $html = '<' . $this->name . (count($this->attributes) > 0 ? ' ' . join(' ', $this->attributes) : '') . '>';
+        if (count($this->children) > 0) {
+            foreach ($this->children as $child) {
+                $html .= $child->build();
+            }
+            $html .= '</' . $this->name . '>';
+        }
+        return $html;
     }
 }

@@ -22,4 +22,11 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $element->setAttributeArray('class', array('list', 'bullets'));
         $this->assertEquals('<html class="list bullets">', $element->build());
     }
+    
+    public function testAddChild()
+    {
+        $element = new Element('html');
+        $element->addChild(new Element('head'));
+        $this->assertEquals('<html><head></html>', $element->build());
+    }
 }
