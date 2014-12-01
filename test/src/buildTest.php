@@ -6,40 +6,48 @@ class buildTest extends PHPUnit_Framework_TestCase
     protected $pipes;
 
     protected $process;
+    
+    protected $root;
 
     protected function setUp()
     {
-        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'build.php';
+        $this->root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'vitafolio';
         
-        $descriptor = array(
-            0 => array(
-                'pipe',
-                'r'
-            ),
-            1 => array(
-                'pipe',
-                'w'
-            ),
-            2 => array(
-                'pipe',
-                'r'
-            )
-        );
+        mkdir($this->root, 0755);
         
-        $this->process = proc_open($cmd, $descriptor, $this->pipes);
+        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'build.php ' . escapeshellarg($this->root);
+        
+        exec($cmd);
     }
 
     protected function tearDown()
+    {        
+        $this->rmdir($this->root);
+    }
+    
+    protected function rmdir($directory) 
     {
-        fclose($this->pipes[0]);
-        fclose($this->pipes[1]);
-        fclose($this->pipes[2]);
-        
-        proc_close($this->process);
+        $dir = opendir($directory);
+        while ($node = readdir($dir)) {
+            if ($node === '..' || $node === '.') {
+                continue;
+            }
+            
+            $nodePath = $directory . DIRECTORY_SEPARATOR . $node;
+            if (is_dir($nodePath)) {
+                $this->rmdir($nodePath);
+            } else {
+                unlink($nodePath);
+            }
+        }
+        closedir($dir);
+        return rmdir($directory);
     }
 
-    public function testOutputContainsHTML5Doctype()
+    public function testBuiltHTMLFileContainsHTML5HelloWorld()
     {
-        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", fread($this->pipes[1], 1024));
+        $this->assertFileExists($this->root . DIRECTORY_SEPARATOR . 'index.html');
+        
+        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", file_get_contents($this->root . DIRECTORY_SEPARATOR . 'index.html'));
     }
 }
