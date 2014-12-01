@@ -20,5 +20,7 @@ class indexTest extends PHPUnit_Framework_TestCase
         
         $document = $return($services);
         $this->assertTrue($document instanceof HTML5\Document);
+
+        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", $document->build());
     }
 }
