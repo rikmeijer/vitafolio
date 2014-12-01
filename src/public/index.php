@@ -4,7 +4,7 @@ return function(array $services, Closure $builder)  {
         new HTML5\Node\Text('Hello World!')
     ));
     
-    $builder(DIRECTORY_SEPARATOR . 'index.html', $document->build());
+    $services['filewriter'](DIRECTORY_SEPARATOR . 'index.html', $document->build());
     
     return $document;
 };
