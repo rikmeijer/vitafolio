@@ -1,6 +1,6 @@
 <?php
 
-class indexTest extends PHPUnit_Framework_TestCase
+class buildTest extends PHPUnit_Framework_TestCase
 {
 
     protected $pipes;
@@ -9,7 +9,7 @@ class indexTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'index.php';
+        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'build.php';
         
         $descriptor = array(
             0 => array(
