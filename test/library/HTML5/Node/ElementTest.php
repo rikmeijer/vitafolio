@@ -39,4 +39,13 @@ class ElementTest extends \PHPUnit_Framework_TestCase
         $element->addChild(new Text('head'));
         $this->assertEquals('<html>head</html>', $element->build());
     }
+    
+    public function testSetStyles()
+    {
+        $element = new Element('html');
+        $element->setStyles(array(
+            'width' => '100px'
+        ));
+        $this->assertEquals('<html style="width:100px;">', $element->build());
+    }
 }

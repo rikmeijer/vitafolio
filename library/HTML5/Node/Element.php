@@ -57,6 +57,20 @@ class Element extends \HTML5\Node implements \HTML5\BuildableInterface, \HTML5\C
         $child->adopt($this);
         return $child;
     }
+
+
+    /**
+     * 
+     * @param array $styles
+     */
+    public function setStyles(array $styles)
+    {
+        $attributeStyles = array();
+        foreach ($styles as $styleIdentifier => $style) {
+            $attributeStyles[] = $styleIdentifier . ':' . $style;
+        }
+        $this->setAttributeString('style', join(';', $attributeStyles) . ';');
+    }
     
     /**
      * 
