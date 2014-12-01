@@ -43,6 +43,15 @@ class Document implements BuildableInterface, ContainableInterface
     
     /**
      * 
+     * @param array $styles
+     */
+    public function setStyles(array $styles)
+    {
+        return $this->body->setStyles($styles);
+    }
+    
+    /**
+     * 
      * @return string
      */
     public function build()

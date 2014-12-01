@@ -9,6 +9,15 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body></html>', $document->build());
     }
 
+    public function testBuildWithStyles()
+    {
+        $document = new Document(new Factory(array()));
+        $document->setStyles(array(
+            'font-family' => 'Arial, sans-serif'
+        ));
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body style="font-family:Arial, sans-serif;"></html>', $document->build());
+    }
+    
     public function testAddChild()
     {
         $document = new Document(new Factory(array()));
