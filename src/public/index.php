@@ -3,8 +3,6 @@ return function(array $services)  {
     $document = $services['library']['HTML5']()->createDocumentWithChildren(array(
         new HTML5\Node\Text('Hello World!')
     ));
-    
-    $services['filewriter'](DIRECTORY_SEPARATOR . 'index.html', $document->build());
-    
-    return $document;
+        
+    return $services['filewriter'](DIRECTORY_SEPARATOR . 'index.html', $document->build());
 };

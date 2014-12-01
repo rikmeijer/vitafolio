@@ -26,8 +26,7 @@ class indexTest extends PHPUnit_Framework_TestCase
             )
         );
         
-        $document = $return($services);
-        $this->assertTrue($document instanceof HTML5\Document);
+        $this->assertEquals(0, $return($services));
 
         $this->assertEquals(DIRECTORY_SEPARATOR . 'index.html', $pathActual);
         $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", $contentsActual);
