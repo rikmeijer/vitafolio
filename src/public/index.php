@@ -4,6 +4,10 @@ return function(array $services)  {
     $document = $html5Factory->createDocumentWithChildren(array(
         $html5Factory->createText('Hello World!')
     ));
+    
+    $document->setStyles(array(
+       'font-family' => 'Arial, sans-serif' 
+    ));
         
     return $services['filewriter'](DIRECTORY_SEPARATOR . 'index.html', $document->build());
 };

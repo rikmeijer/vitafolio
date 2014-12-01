@@ -29,6 +29,6 @@ class indexTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(0, $return($services));
 
         $this->assertEquals(DIRECTORY_SEPARATOR . 'index.html', $pathActual);
-        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", $contentsActual);
+        $this->assertEquals("<!DOCTYPE html>\n<html><head><body style=\"font-family:Arial, sans-serif;\">Hello World!</body></html>", $contentsActual);
     }
 }
