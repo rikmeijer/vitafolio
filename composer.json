@@ -2,7 +2,6 @@
     "name": "rikmeijer/vitafolio",
     "require-dev": {
         "phpunit/phpunit": "~4.3",
-        "phpunit/phpunit-selenium": ">=1.2"
     },
     "authors": [
         {
