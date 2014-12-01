@@ -1,4 +1,8 @@
 <?php
-$environment = require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+$environmentBootstrap = require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
-$environment();
+$environment = $environmentBootstrap();
+
+define('SRC_PATH', $environment['root-path'] . DIRECTORY_SEPARATOR . 'src');
+
+unset($environment);
