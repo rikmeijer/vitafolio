@@ -1,5 +1,5 @@
 <?php
-return function ()
+return function ($targetFolder)
 {
     define('NAMESPACE_SEPARATOR', '\\');
     
@@ -34,6 +34,9 @@ return function ()
     
     return array(
         'root-path' => __DIR__,
+        'filewriter' => function($path, $contents) use ($targetFolder) {
+            return file_put_contents($targetFolder . $path, $contents);
+        },
         'library' => $libraryFactories
     );
 };
