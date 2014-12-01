@@ -2,6 +2,6 @@
 $bootstrap = require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
 $services = $bootstrap();
 
-$document = $services['library']['HTML5']()->createDocumentWithChildren(array(new HTML5\Node\Text('Hello World!')));
+$document = require __DIR__ . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'index.php';
 
-print $document->build();
+print $document($services)->build();
