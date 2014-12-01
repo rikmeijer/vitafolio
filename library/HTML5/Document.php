@@ -1,7 +1,7 @@
 <?php
 namespace HTML5;
 
-class Document implements BuildableInterface, ContainableInterface
+class Document implements BuildableInterface, ContainableInterface, StylableInterface
 {
     /**
      * 
