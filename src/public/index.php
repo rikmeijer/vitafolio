@@ -1,4 +1,6 @@
 <?php
-return function()  {
-    
+return function(array $services)  {
+    return $services['library']['HTML5']()->createDocumentWithChildren(array(
+        
+    ));
 };
