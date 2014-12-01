@@ -18,9 +18,16 @@ class indexTest extends PHPUnit_Framework_TestCase
             )
         );
         
-        $document = $return($services);
+        $pathActual = null;
+        $contentsActuall = null;
+        $document = $return($services, function($path, $contents) use (&$pathActual, &$contentsActual) {
+            $pathActual = $path;
+            $contentsActual = $contents;
+            return 0;
+        });
         $this->assertTrue($document instanceof HTML5\Document);
 
-        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", $document->build());
+        $this->assertEquals(DIRECTORY_SEPARATOR . 'index.html', $pathActual);
+        $this->assertEquals("<!DOCTYPE html>\n<html><head><body>Hello World!</body></html>", $contentsActual);
     }
 }
