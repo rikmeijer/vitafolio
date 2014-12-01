@@ -39,4 +39,14 @@ class Factory
     {
         return new Node\Element($name);
     }
+    
+    /**
+     * 
+     * @param string $text
+     * @return \HTML5\Node\Text
+     */
+    public function createText($text)
+    {
+        return new Node\Text($text);
+    }
 }

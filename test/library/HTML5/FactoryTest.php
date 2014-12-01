@@ -23,4 +23,10 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new Factory(array());
         $this->assertTrue($factory->createElement('html') instanceof Node\Element);
     }
+    
+    public function testCreateText()
+    {
+        $factory = new Factory(array());
+        $this->assertTrue($factory->createText('html') instanceof Node\Text);
+    }
 }
