@@ -26,7 +26,7 @@ class indexTest extends PHPUnit_Framework_TestCase
             )
         );
         
-        $document = $return($services, $services['filewriter']);
+        $document = $return($services);
         $this->assertTrue($document instanceof HTML5\Document);
 
         $this->assertEquals(DIRECTORY_SEPARATOR . 'index.html', $pathActual);

@@ -1,5 +1,5 @@
 <?php
-return function(array $services, Closure $builder)  {
+return function(array $services)  {
     $document = $services['library']['HTML5']()->createDocumentWithChildren(array(
         new HTML5\Node\Text('Hello World!')
     ));
