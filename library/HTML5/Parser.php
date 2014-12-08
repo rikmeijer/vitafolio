@@ -30,6 +30,10 @@ class Parser
                 throw new Exception\MultipleRootException();
             }
             
+            if (!$children[0] instanceof Node\Element) {
+                throw new Exception\NoRootException();
+            }
+            
             foreach ($children as $child) {
                 $document->addChild($child);
             }

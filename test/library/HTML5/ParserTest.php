@@ -27,6 +27,15 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html><html2></html2><html3></htm3l>');
     }
+    
+    /**
+     * @expectedException \HTML5\Exception\NoRootException
+     */
+    public function testParseDocumentNoRoot()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<!DOCTYPE html> ');
+    }
 
     public function testParseTagName()
     {
