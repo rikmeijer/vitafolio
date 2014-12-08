@@ -37,6 +37,9 @@ return function ($targetFolder)
         'filewriter' => function($path, $contents) use ($targetFolder) {
             return file_put_contents($targetFolder . $path, $contents);
         },
+        'template' => function($templateIdentifier) {
+            return file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateIdentifier);
+        },
         'library' => $libraryFactories
     );
 };
