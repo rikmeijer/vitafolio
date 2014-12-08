@@ -18,6 +18,13 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<element2></element2>', $result[0]->build());
     }
 
+    public function testParseClosedEmptyElement()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<element2 />');
+        $this->assertEquals('<element2>', $result[0]->build());
+    }
+
     public function testParseChildren()
     {
         $parser = new Parser(new Factory(array()));
