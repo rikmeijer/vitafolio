@@ -8,27 +8,34 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<element></element>');
-        $this->assertEquals('<element>', $result->build());
+        $this->assertEquals('<element></element>', $result->build());
     }
 
     public function testParseTagName()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<element2></element2>');
-        $this->assertEquals('<element2>', $result->build());
+        $this->assertEquals('<element2></element2>', $result->build());
+    }
+
+    public function testParseChildren()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<element2><child></child></element2>');
+        $this->assertEquals('<element2><child></child></element2>', $result->build());
     }
     
     public function testParseWithAttribute()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<element attr1="val1"></element>');
-        $this->assertEquals('<element attr1="val1">', $result->build());
+        $this->assertEquals('<element attr1="val1"></element>', $result->build());
     }
     
     public function testParseWithAttributes()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<element attr1="val1" attr2=val2 attr3="val 3"></element>');
-        $this->assertEquals('<element attr1="val1" attr2="val2" attr3="val 3">', $result->build());
+        $this->assertEquals('<element attr1="val1" attr2="val2" attr3="val 3"></element>', $result->build());
     }
 }
