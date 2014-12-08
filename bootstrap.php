@@ -1,7 +1,7 @@
 <?php
 return function ($targetFolder)
 {
-    define('NAMESPACE_SEPARATOR', '\\');
+    defined('NAMESPACE_SEPARATOR') or define('NAMESPACE_SEPARATOR', '\\');
     
     $libraryAutoload = require __DIR__ . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . 'autoload.php';
     $libraryFactories = $libraryAutoload(function ($prefix, $base_dir)

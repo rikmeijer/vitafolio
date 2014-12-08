@@ -9,22 +9,17 @@ class indexTest extends PHPUnit_Framework_TestCase
         
         $this->assertTrue($return instanceof Closure);
 
+        $environment = require(dirname(SRC_PATH) . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
         $pathActual = null;
         $contentsActual = null;
-        $services = array(
+        $services = array_replace_recursive($environment(sys_get_temp_dir()), array(
             'filewriter' => function($path, $contents) use (&$pathActual, &$contentsActual) {
                 $pathActual = $path;
                 $contentsActual = $contents;
                 return 0;
-            },
-            'library' => array(
-                'HTML5' => function () use(&$services)
-                {
-                    return new HTML5\Factory($services);
-                }
-            )
-        );
+            }
+        ));
         
         $this->assertEquals(0, $return($services));
 
