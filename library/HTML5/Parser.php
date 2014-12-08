@@ -3,10 +3,20 @@ namespace HTML5;
 
 class Parser
 {
+    /**
+     * 
+     * @var Factory
+     */
+    private $factory;
+    
+    public function __construct(Factory $factory)
+    {
+        $this->factory = $factory;
+    }
     
     public function parse($string)
     {
-        return new Node\Element('element');
+        return $this->factory->createElement('element');
     }
 
 }
