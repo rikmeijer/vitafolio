@@ -28,6 +28,15 @@ class Element extends \HTML5\Node implements \HTML5\BuildableInterface, \HTML5\C
     
     /**
      * 
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * 
      * @param string $identifier
      * @param string $value
      */

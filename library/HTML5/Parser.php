@@ -22,7 +22,16 @@ class Parser
     public function parse($string)
     {
         $elements = array();
-        if (preg_match_all('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)(\s+\/>|>((?<innerHTML>.*))<\/\1>)?/', $string, $matches, PREG_SET_ORDER) < 1) {
+        if (strpos($string, Document::DOCTYPE) === 0) {
+            $document = $this->factory->createDocument();
+            
+            foreach ($this->parse(substr($string, strlen(Document::DOCTYPE))) as $child) {
+                $document->addChild($child);
+            }
+            
+            return $document;
+            
+        } elseif (preg_match_all('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)(\s+\/>|>((?<innerHTML>.*))<\/\1>)?/', $string, $matches, PREG_SET_ORDER) < 1) {
             return array($this->factory->createText($string));
         }
         

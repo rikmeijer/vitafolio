@@ -3,6 +3,8 @@ namespace HTML5;
 
 class Document implements BuildableInterface, ContainableInterface, StylableInterface
 {
+    const DOCTYPE = '<!DOCTYPE html>';
+    
     /**
      * 
      * @var Node\Element
@@ -38,6 +40,13 @@ class Document implements BuildableInterface, ContainableInterface, StylableInte
      */
     public function addChild(BuildableInterface $child)
     {
+        if ($child instanceof Node\Element) {
+            switch ($child->getName()) {
+                case 'html':
+                    $this->root = $child;
+                    return $child;
+            }
+        }
         return $this->body->addChild($child);
     }
     
@@ -56,7 +65,7 @@ class Document implements BuildableInterface, ContainableInterface, StylableInte
      */
     public function build()
     {
-        return '<!DOCTYPE html>' . PHP_EOL . $this->root->build();
+        return self::DOCTYPE . PHP_EOL . $this->root->build();
     }
 
 }
