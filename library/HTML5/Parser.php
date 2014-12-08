@@ -25,7 +25,12 @@ class Parser
         if (strpos($string, Document::DOCTYPE) === 0) {
             $document = $this->factory->createDocument();
             
-            foreach ($this->parse(substr($string, strlen(Document::DOCTYPE))) as $child) {
+            $children = $this->parse(substr($string, strlen(Document::DOCTYPE)));
+            if (count($children) > 1) {
+                throw new Exception\MultipleRootException();
+            }
+            
+            foreach ($children as $child) {
                 $document->addChild($child);
             }
             

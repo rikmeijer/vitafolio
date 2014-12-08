@@ -18,6 +18,15 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result instanceof Document);
         $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body><element></element></body></html>', $result->build());
     }
+    
+    /**
+     * @expectedException \HTML5\Exception\MultipleRootException
+     */
+    public function testParseDocumentInvalidRoot()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<!DOCTYPE html><html2></html2><html3></htm3l>');
+    }
 
     public function testParseTagName()
     {
