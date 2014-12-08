@@ -22,7 +22,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \HTML5\Exception\MultipleRootException
      */
-    public function testParseDocumentInvalidRoot()
+    public function testParseDocumentMultipleRoot()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html><html2></html2><html3></htm3l>');
@@ -35,6 +35,15 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html> ');
+    }
+    
+    /**
+     * @expectedException \HTML5\Exception\InvalidRootException
+     */
+    public function testParseDocumentInvalidRoot()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<!DOCTYPE html><html2></html2>');
     }
 
     public function testParseTagName()

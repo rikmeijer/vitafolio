@@ -32,11 +32,11 @@ class Parser
             
             if (!$children[0] instanceof Node\Element) {
                 throw new Exception\NoRootException();
+            } elseif ($children[0]->getName() !== 'html') {
+                throw new Exception\InvalidRootException();
             }
-            
-            foreach ($children as $child) {
-                $document->addChild($child);
-            }
+
+            $document->addChild($children[0]);
             
             return $document;
             
