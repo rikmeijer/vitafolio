@@ -27,13 +27,13 @@ class Parser
             
             $children = $this->parse(substr($string, strlen(Document::DOCTYPE)));
             if (count($children) > 1) {
-                throw new Exception\MultipleRootException();
+                return $document;
             }
             
             if (!$children[0] instanceof Node\Element) {
-                throw new Exception\NoRootException();
+                return $document;
             } elseif ($children[0]->getName() !== 'html') {
-                throw new Exception\InvalidRootException();
+                return $document;
             }
 
             $document->addChild($children[0]);

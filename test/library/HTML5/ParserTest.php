@@ -19,31 +19,29 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body><element></element></body></html>', $result->build());
     }
     
-    /**
-     * @expectedException \HTML5\Exception\MultipleRootException
-     */
+    
     public function testParseDocumentMultipleRoot()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html><html2></html2><html3></htm3l>');
+        $this->assertTrue($result instanceof Document);
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body></html>', $result->build());
     }
     
-    /**
-     * @expectedException \HTML5\Exception\NoRootException
-     */
     public function testParseDocumentNoRoot()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html> ');
+        $this->assertTrue($result instanceof Document);
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body></html>', $result->build());
     }
     
-    /**
-     * @expectedException \HTML5\Exception\InvalidRootException
-     */
     public function testParseDocumentInvalidRoot()
     {
         $parser = new Parser(new Factory(array()));
         $result = $parser->parse('<!DOCTYPE html><html2></html2>');
+        $this->assertTrue($result instanceof Document);
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body></html>', $result->build());
     }
 
     public function testParseTagName()
