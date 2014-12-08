@@ -17,14 +17,15 @@ class Parser
     /**
      * 
      * @param string $string
-     * @return BuildableInterface
+     * @return BuildableInterface[]
      */
     public function parse($string)
     {
+        $elements = array();
         if (preg_match('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)>((?<innerHTML>.*)<\/\1>)?/', $string, $matches) === 1) {
             $element = $this->factory->createElement($matches['name']);
         } else {
-            return $this->factory->createText($string);
+            return array($this->factory->createText($string));
         }
         
         if (array_key_exists('attributes', $matches)) {
@@ -35,10 +36,13 @@ class Parser
         }
         
         if (array_key_exists('innerHTML', $matches)) {
-            $element->addChild($this->parse($matches['innerHTML']));
+            foreach ($this->parse($matches['innerHTML']) as $child) {
+                $element->addChild($child);
+            }
         }
         
-        return $element;
+        $elements[] = $element;
+        return $elements;
     }
 
 }
