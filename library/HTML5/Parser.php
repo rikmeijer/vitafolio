@@ -22,26 +22,28 @@ class Parser
     public function parse($string)
     {
         $elements = array();
-        if (preg_match('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)>((?<innerHTML>.*)<\/\1>)?/', $string, $matches) === 1) {
-            $element = $this->factory->createElement($matches['name']);
-        } else {
+        if (preg_match_all('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)>((?<innerHTML>.*)<\/\1>)?/', $string, $matches, PREG_SET_ORDER) < 1) {
             return array($this->factory->createText($string));
         }
         
-        if (array_key_exists('attributes', $matches)) {
-            preg_match_all('/(?<identifier>\w+)\=(?<value>(\w+|"[^"]+"))/', $matches['attributes'], $attributeMatches, PREG_SET_ORDER);
-            foreach ($attributeMatches as $attributeMatch) {
-                $element->setAttributeString($attributeMatch['identifier'], trim($attributeMatch['value'], '"'));
+        foreach ($matches as $match) {
+            $element = $this->factory->createElement($match['name']);
+            
+            if (array_key_exists('attributes', $match)) {
+                preg_match_all('/(?<identifier>\w+)\=(?<value>(\w+|"[^"]+"))/', $match['attributes'], $attributeMatches, PREG_SET_ORDER);
+                foreach ($attributeMatches as $attributeMatch) {
+                    $element->setAttributeString($attributeMatch['identifier'], trim($attributeMatch['value'], '"'));
+                }
             }
-        }
-        
-        if (array_key_exists('innerHTML', $matches)) {
-            foreach ($this->parse($matches['innerHTML']) as $child) {
-                $element->addChild($child);
+            
+            if (array_key_exists('innerHTML', $match)) {
+                foreach ($this->parse($match['innerHTML']) as $child) {
+                    $element->addChild($child);
+                }
             }
+            
+            $elements[] = $element;
         }
-        
-        $elements[] = $element;
         return $elements;
     }
 
