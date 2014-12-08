@@ -49,4 +49,15 @@ class Factory
     {
         return new Node\Text($text);
     }
+    
+
+    /**
+     *
+     * @param string $text
+     * @return \HTML5\Parser
+     */
+    public function createParser()
+    {
+        return new Parser($this);
+    }
 }

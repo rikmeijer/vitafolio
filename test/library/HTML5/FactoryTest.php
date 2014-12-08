@@ -28,4 +28,10 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new Factory(array());
         $this->assertEquals('html', $factory->createText('html')->build());
     }
+    
+    public function testCreateParser()
+    {
+        $factory = new Factory(array());
+        $this->assertEquals('<html></html>', $factory->createParser()->parse('<html></html>')[0]->build());
+    }
 }
