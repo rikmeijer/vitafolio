@@ -24,7 +24,15 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
         $document->addChild(new Node\Element('div'));
         $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body><div></body></html>', $document->build());
     }
-    
+
+    public function testAddChildHTML()
+    {
+        $document = new Document(new Factory(array()));
+        $document->addChild(new Node\Element('div'));
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html><head><body><div></body></html>', $document->build());
+        $document->addChild(new Node\Element('html'));
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL . '<html>', $document->build());
+    }
     
     public function testAddTextChild()
     {
