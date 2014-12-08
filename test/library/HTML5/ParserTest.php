@@ -10,6 +10,13 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $result = $parser->parse('<element></element>');
         $this->assertEquals('<element>', $result->build());
     }
+
+    public function testParseTagName()
+    {
+        $parser = new Parser(new Factory(array()));
+        $result = $parser->parse('<element2></element2>');
+        $this->assertEquals('<element2>', $result->build());
+    }
     
     public function testParseWithAttributes()
     {

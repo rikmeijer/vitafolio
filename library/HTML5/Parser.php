@@ -21,7 +21,9 @@ class Parser
      */
     public function parse($string)
     {
-        $element = $this->factory->createElement('element');
+        if (preg_match('/\<(?<name>\w+)/', $string, $matches) === 1) {
+            $element = $this->factory->createElement($matches['name']);
+        }
         
         if (strpos($string, 'attr1')) {
             $element->setAttributeString('attr1', 'val1');
