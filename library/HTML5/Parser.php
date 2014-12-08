@@ -21,12 +21,15 @@ class Parser
      */
     public function parse($string)
     {
-        if (preg_match('/\<(?<name>\w+)/', $string, $matches) === 1) {
+        if (preg_match('/\<(?<name>\w+)(?<attributes>(\s+\w+\=(\w+|"[^"]+"))*)/', $string, $matches) === 1) {
             $element = $this->factory->createElement($matches['name']);
         }
         
-        if (strpos($string, 'attr1')) {
-            $element->setAttributeString('attr1', 'val1');
+        if (array_key_exists('attributes', $matches)) {
+            preg_match_all('/(?<identifier>\w+)\=(?<value>(\w+|"[^"]+"))/', $matches['attributes'], $attributeMatches, PREG_SET_ORDER);
+            foreach ($attributeMatches as $attributeMatch) {
+                $element->setAttributeString($attributeMatch['identifier'], trim($attributeMatch['value'], '"'));
+            }
         }
         
         return $element;
