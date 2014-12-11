@@ -1,0 +1,10 @@
+{
+	"title" : "Hello World",
+	"layout" : [
+	 	["bar", {"layout" : [
+	 		["logo", {"source" : "/img/logo.png"}]
+	 	]}]
+	
+	]
+
+}
