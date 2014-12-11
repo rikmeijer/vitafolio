@@ -14,9 +14,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     public function testParseDocument()
     {
         $parser = new Parser(new Factory(array()));
-        $result = $parser->parse('<!DOCTYPE html><html><head><body><element></element></body></html>');
+        $result = $parser->parse('<!DOCTYPE html><html><head></head><body><element></element></body></html>');
         $this->assertTrue($result instanceof Document);
-        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head><body><element></element></body></html>', $result->build());
+        $this->assertEquals('<!DOCTYPE html>' . PHP_EOL .'<html><head></head><body><element></element></body></html>', $result->build());
     }
     
     
