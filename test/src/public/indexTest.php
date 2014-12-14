@@ -18,6 +18,9 @@ class indexTest extends PHPUnit_Framework_TestCase
                 $pathActual = $path;
                 $contentsActual = $contents;
                 return 0;
+            },
+            'template' => function($templateIdentifier) {
+                return '<!DOCTYPE html>' . PHP_EOL . '<html><head></head><body style="font-family:Arial, sans-serif;">Hello World!</body></html>';
             }
         ));
         
