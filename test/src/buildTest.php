@@ -49,6 +49,6 @@ class buildTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFileExists($this->root . DIRECTORY_SEPARATOR . 'index.html');
         
-        $this->assertEquals("<!DOCTYPE html>\n<html><head></head><body style=\"font-family:Arial, sans-serif;\">Hello World!</body></html>", file_get_contents($this->root . DIRECTORY_SEPARATOR . 'index.html'));
+        $this->assertContains("<!DOCTYPE html>", file_get_contents($this->root . DIRECTORY_SEPARATOR . 'index.html'));
     }
 }
