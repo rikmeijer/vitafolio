@@ -14,9 +14,10 @@ class buildTest extends PHPUnit_Framework_TestCase
         $this->root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'vitafolio';
         
         mkdir($this->root, 0755);
+                
+        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'build.php';
         
-        $cmd = '/usr/bin/php ' . SRC_PATH . DIRECTORY_SEPARATOR . 'build.php ' . escapeshellarg($this->root);
-        
+        chdir($this->root);
         exec($cmd);
     }
 
