@@ -1,0 +1,3 @@
+[submodule "build"]
+	path = build
+	url = git@github.com:rikmeijer/rikmeijer.github.io.git
