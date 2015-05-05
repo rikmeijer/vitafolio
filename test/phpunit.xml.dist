@@ -22,7 +22,6 @@
          timeoutForSmallTests="1"
          timeoutForMediumTests="10"
          timeoutForLargeTests="60"
-         strict="true"
          verbose="false">
          
     <php>
