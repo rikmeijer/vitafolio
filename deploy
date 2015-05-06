@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cd build
+
+if git diff-index --quiet HEAD --; then
+	#no changes
+else
+	git config --global user.email "rikmeijer@gmail.com"
+	git config --global user.name "Rik Meijer"
+	git commit -am "[codeship] auto-build"
+	git push
+fi
