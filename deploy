@@ -6,9 +6,7 @@ if git diff-index --quiet HEAD --; then
 	#no changes
 	echo "No changes"
 else
-	git config --global user.email "rikmeijer@gmail.com"
-	git config --global user.name "Rik Meijer"
-	git commit -am "[codeship] auto-build"
+	git commit -a
 	git push
 	
 	echo "Changes committed and pushed"
